@@ -1,6 +1,6 @@
 version: '3.5'
 services:
-  pg-carbox:
+  pg-carBox:
     hostname: pg-carBox
     container_name: pg-carBox
     image: postgres
