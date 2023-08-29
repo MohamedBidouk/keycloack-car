@@ -3,7 +3,7 @@ services:
   pg-carbox:
     hostname: pg-carBox
     container_name: pg-carBox
-    build: ./docker/images/postgresql
+    image: postgres
     environment:
       - POSTGRES_DB=carBox
       - POSTGRES_USER=carBox
@@ -21,8 +21,7 @@ services:
     #Be sure to use ‘docker-compose up --build -d’ to import realms.
     #docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:21.1.1 start-dev
     #image: quay.io/keycloak/keycloak:21.0
-    build:
-      ./docker/images/keycloak/
+    image: keycloak
     hostname: keycloak-carbox
     container_name: keycloak-carbox
     restart: always
