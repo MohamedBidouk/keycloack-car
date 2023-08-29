@@ -68,9 +68,8 @@ services:
 volumes:
   portainer_data: { }
 networks:
-  my_nw1:
-    driver: overlay
-    name: my_nw1
+  default:
+    driver: bridge
 
 
 
