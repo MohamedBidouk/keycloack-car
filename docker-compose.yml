@@ -12,7 +12,7 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - my_nw1
+      - default
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
@@ -41,7 +41,7 @@ services:
       - 8180:8080
       - 8443:8443
     networks:
-      - my_nw1
+      - default
     depends_on:
       - pg-carBox
   pgadmin:
@@ -49,7 +49,7 @@ services:
     hostname: pgadmin
     container_name: pgadmin
     networks:
-      - my_nw1
+      - default
     ports:
       - 81:80
     environment:
