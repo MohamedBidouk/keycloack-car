@@ -12,7 +12,7 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - default
+      - my_nw1
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
@@ -20,8 +20,8 @@ services:
   keycloak-carBox:
     #Be sure to use ‘docker-compose up --build -d’ to import realms.
     #docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:21.1.1 start-dev
-    #image: quay.io/keycloak/keycloak:21.0
-    image: keycloak
+    image: quay.io/keycloak/keycloak:21.0
+    #image: keycloak
     hostname: keycloak-carbox
     container_name: keycloak-carbox
     restart: always
@@ -41,7 +41,7 @@ services:
       - 8180:8080
       - 8443:8443
     networks:
-      - default
+      - my_nw1
     depends_on:
       - pg-carBox
   pgadmin:
@@ -49,7 +49,7 @@ services:
     hostname: pgadmin
     container_name: pgadmin
     networks:
-      - default
+      - my_nw1
     ports:
       - 81:80
     environment:
@@ -68,8 +68,9 @@ services:
 volumes:
   portainer_data: { }
 networks:
-  default:
-    driver: bridge
+  my_nw1:
+    driver: overlay
+    name: my_nw1
 
 
 
