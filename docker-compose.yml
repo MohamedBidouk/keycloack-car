@@ -58,20 +58,20 @@ services:
       defaultEmail: carbox@carbox.com
       defaultPassword: carbox
       PGADMIN_DEFAULT_PASSWORD: carbox
-    portainer:
-      image: 'portainer/portainer-ce:latest'
-      restart: always
-      volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
-        - portainer_data:/data
-      ports:
-        - "9443:9443"
-  volumes:
-    portainer_data: { }
-  networks:
-    my_nw1:
-      driver: overlay
-      name: my_nw1
+  portainer:
+    image: 'portainer/portainer-ce:latest'
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    ports:
+      - "9443:9443"
+volumes:
+  portainer_data: { }
+networks:
+  my_nw1:
+    driver: overlay
+    name: my_nw1
 
 
 
