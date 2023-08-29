@@ -1,0 +1,77 @@
+version: '3.5'
+services:
+  pg-zamzam:
+    hostname: pg-carBox
+    container_name: pg-carBox
+    build: ./docker/images/postgresql
+    environment:
+      - POSTGRES_DB=carBox
+      - POSTGRES_USER=carBox
+      - POSTGRES_PASSWORD=carBox
+      - POSTGRES_ROOT_PASSWORD=carBox
+    ports:
+      - "5432:5432"
+    networks:
+      - my_nw1
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ./docker/volumes/postgresql/:/var/lib/postgresql/data
+  keycloak-carBox:
+    #Be sure to use ‘docker-compose up --build -d’ to import realms.
+    #docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:21.1.1 start-dev
+    #image: quay.io/keycloak/keycloak:21.0
+    build:
+      ./docker/images/keycloak/
+    hostname: keycloak-zamzam
+    container_name: keycloak-zamzam
+    restart: always
+    #command: start
+    environment:
+      #KEYCLOAK_USER: admin
+      #KEYCLOAK_PASSWORD: admin
+      KEYCLOAK_ADMIN: carBoxAdmin
+      KEYCLOAK_ADMIN_PASSWORD: carBoxAdmin
+    volumes:
+      #- ./keycloak/conf:/opt/keycloak/conf
+      - ./docker/images/keycloak/realms:/opt/keycloak/data/import
+      #- ./keycloak/themes:/opt/keycloak/themes
+      #- ./keycloak/config/realm-export.json:/tmp/keycloak/config/realm-export.json
+      #- ./keycloak/config/realm-export.json:/opt/keycloak/data/import/realm.json
+    ports:
+      - 8180:8080
+      - 8443:8443
+    networks:
+      - my_nw1
+    depends_on:
+      - pg-carBox
+  pgadmin:
+    image: dpage/pgadmin4
+    hostname: pgadmin
+    container_name: pgadmin
+    networks:
+      - my_nw1
+    ports:
+      - 81:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: carbox@carbox.com
+      defaultEmail: carbox@carbox.com
+      defaultPassword: carbox
+      PGADMIN_DEFAULT_PASSWORD: carbox
+    portainer:
+      image: 'portainer/portainer-ce:latest'
+      restart: always
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - portainer_data:/data
+      ports:
+        - "9443:9443"
+  volumes:
+    portainer_data: { }
+  networks:
+    my_nw1:
+      driver: overlay
+      name: my_nw1
+
+
+
