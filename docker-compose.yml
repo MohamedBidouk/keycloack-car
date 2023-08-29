@@ -1,6 +1,6 @@
 version: '3.5'
 services:
-  pg-zamzam:
+  pg-carbox:
     hostname: pg-carBox
     container_name: pg-carBox
     build: ./docker/images/postgresql
@@ -23,8 +23,8 @@ services:
     #image: quay.io/keycloak/keycloak:21.0
     build:
       ./docker/images/keycloak/
-    hostname: keycloak-zamzam
-    container_name: keycloak-zamzam
+    hostname: keycloak-carbox
+    container_name: keycloak-carbox
     restart: always
     #command: start
     environment:
