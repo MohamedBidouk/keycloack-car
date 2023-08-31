@@ -37,8 +37,8 @@ services:
       KC_DB: postgres
       KC_DB_SCHEMA: public
       KC_DB_URL: jdbc:postgresql://pg-carBox:5432/keycloak
-      KC_DB_USERNAME: admin
-      KC_DB_PASSWORD: admin123
+      KC_DB_USERNAME: carBox
+      KC_DB_PASSWORD: carBox
       JDBC_PARAMS: "useSSL=false"
       # General KC config
       KC_HEALTH_ENABLED: "true"
