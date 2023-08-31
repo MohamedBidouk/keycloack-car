@@ -11,8 +11,6 @@ services:
       - POSTGRES_ROOT_PASSWORD=carBox
     ports:
       - "5432:5432"
-    networks:
-      - my_nw1
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
@@ -53,16 +51,12 @@ services:
     ports:
       - 8180:8080
       - 8443:8443
-    networks:
-      - my_nw1
     depends_on:
       - pg-carBox
   pgadmin:
     image: dpage/pgadmin4
     hostname: pgadmin
     container_name: pgadmin
-    networks:
-      - my_nw1
     ports:
       - 8888:80
     environment:
