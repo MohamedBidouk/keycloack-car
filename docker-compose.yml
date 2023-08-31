@@ -36,7 +36,7 @@ services:
       KEYCLOAK_ADMIN_PASSWORD: admin123!
       KC_DB: postgres
       KC_DB_SCHEMA: public
-      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
+      KC_DB_URL: jdbc:postgresql://localhost:5432/keycloak
       KC_DB_USERNAME: admin
       KC_DB_PASSWORD: admin123
       JDBC_PARAMS: "useSSL=false"
