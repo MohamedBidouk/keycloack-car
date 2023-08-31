@@ -34,18 +34,16 @@ services:
 
     #command: start
     environment:
-      #KEYCLOAK_USER: admin
-      #KEYCLOAK_PASSWORD: admin
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin123!
-        - 'KC_DB=postgres'
-        - 'KC_DB_SCHEMA=public'
-        - 'KC_DB_URL=jdbc:postgresql://postgres:5432/keycloak'
-        - 'KC_DB_USERNAME=admin'
-        - 'KC_DB_PASSWORD=admin123'
-        - 'JDBC_PARAMS="useSSL=false"'
-        # General KC config
-        - 'KC_HEALTH_ENABLED=true'
+      KC_DB: postgres
+      KC_DB_SCHEMA: public
+      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
+      KC_DB_USERNAME: admin
+      KC_DB_PASSWORD: admin123
+      JDBC_PARAMS: "useSSL=false"
+      # General KC config
+      KC_HEALTH_ENABLED: "true"
     #volumes:
       #- ./keycloak/conf:/opt/keycloak/conf
       #- ./docker/images/keycloak/realms:/opt/keycloak/data/import
