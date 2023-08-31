@@ -31,9 +31,9 @@ services:
       #KEYCLOAK_PASSWORD: admin
       KEYCLOAK_ADMIN: carBoxAdmin
       KEYCLOAK_ADMIN_PASSWORD: carBoxAdmin
-    volumes:
+    #volumes:
       #- ./keycloak/conf:/opt/keycloak/conf
-      - ./docker/images/keycloak/realms:/opt/keycloak/data/import
+      #- ./docker/images/keycloak/realms:/opt/keycloak/data/import
       #- ./keycloak/themes:/opt/keycloak/themes
       #- ./keycloak/config/realm-export.json:/tmp/keycloak/config/realm-export.json
       #- ./keycloak/config/realm-export.json:/opt/keycloak/data/import/realm.json
