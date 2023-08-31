@@ -38,7 +38,7 @@ services:
       #- ./keycloak/config/realm-export.json:/tmp/keycloak/config/realm-export.json
       #- ./keycloak/config/realm-export.json:/opt/keycloak/data/import/realm.json
     ports:
-      - 8180:8080
+      - 8080:8080
       - 8443:8443
     networks:
       - my_nw1
@@ -51,7 +51,7 @@ services:
     networks:
       - my_nw1
     ports:
-      - 81:80
+      - 8888:80
     environment:
       PGADMIN_DEFAULT_EMAIL: carbox@carbox.com
       defaultEmail: carbox@carbox.com
