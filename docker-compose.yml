@@ -20,11 +20,18 @@ services:
   keycloak-carBox:
     #Be sure to use ‘docker-compose up --build -d’ to import realms.
     #docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:21.1.1 start-dev
-    image: quay.io/keycloak/keycloak:21.0
+    image: quay.io/keycloak/keycloak:21.1.2
     #image: keycloak
     hostname: keycloak-carbox
     container_name: keycloak-carbox
     restart: always
+    entrypoint: [ '/bin/bash', '-c']
+    command:
+        - |
+          cd /opt/keycloak
+          ./bin/kc.sh build
+          ./bin/kc.sh start-dev --import-realm --log=console --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true
+
     #command: start
     environment:
       #KEYCLOAK_USER: admin
@@ -34,7 +41,7 @@ services:
         - 'KC_DB=postgres'
         - 'KC_DB_SCHEMA=public'
         - 'KC_DB_URL=jdbc:postgresql://postgres:5432/keycloak'
-        - 'KC_DB_USERNAME=keycloak'
+        - 'KC_DB_USERNAME=admin'
         - 'KC_DB_PASSWORD=admin123'
         - 'JDBC_PARAMS="useSSL=false"'
         # General KC config
