@@ -105,6 +105,10 @@ services:
       - "9443:9443"
 volumes:
   portainer_data: { }
+  postgres_data:
+    driver: local
+  postgres_logs:
+    driver: local
 
 
 
