@@ -56,6 +56,12 @@ services:
       # General KC config
       KC_HEALTH_ENABLED: "true"
     volumes:
+      - type: bind
+        source: "./data/apiman-realm-for-keycloak.json"
+        target: /opt/keycloak/data/import/apiman-realm-for-keycloak.json
+      - type: bind
+        source: "./data/apiman-keycloak-theme.jar"
+        target: /opt/keycloak/providers/apiman-keycloak-theme.jar
       - ./keycloak.key:/etc/x509/https/tls.key
       - ./keycloak.crt:/etc/x509/https/tls.crt
       #- ./keycloak/conf:/opt/keycloak/conf
