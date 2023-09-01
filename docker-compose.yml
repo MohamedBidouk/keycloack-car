@@ -28,7 +28,9 @@ services:
         - |
           cd /opt/keycloak
           ./bin/kc.sh build
-          ./bin/kc.sh start-dev --import-realm --log=console --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true --spi-connections-http-client-default-disable-trust-manager=true
+          ./bin/kc.sh start-dev --import-realm --log=console --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true 
+          ./bin/kcadm.sh config credentials --server http://137.74.160.180:8180 --realm master --user admin
+          ./bin/kcadm.sh update realms/master -s sslRequired=NONE
 
     #command: start
     environment:
