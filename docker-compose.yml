@@ -3,12 +3,11 @@ services:
   pg-carBox:
     hostname: pg-carBox
     container_name: pg-carBox
-    image: postgres
+    image: postgres:14
     environment:
-      - POSTGRES_DB=carBox
-      - POSTGRES_USER=carBox
-      - POSTGRES_PASSWORD=carBox
-      - POSTGRES_ROOT_PASSWORD=carBox
+      - POSTGRES_MULTIPLE_DATABASE=apiman.keycloak
+      - POSTGRES_USERNAME=postgres
+      - POSTGRES_PASSWORD=admin123!
     ports:
       - "5432:5432"
     volumes:
@@ -21,6 +20,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
       - ./docker/volumes/postgresql/:/var/lib/postgresql/data
+    restart: unless-stopped
   keycloak-carBox:
     #haha
     #Be sure to use ‘docker-compose up --build -d’ to import realms.
