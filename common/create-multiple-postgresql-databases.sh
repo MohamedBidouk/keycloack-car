@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # This script was originally created by Mart Sõmermaa
 # https://github.com/mrts/docker-postgresql-multiple-databases
 set -e
@@ -15,9 +14,9 @@ function create_user_and_database() {
 EOSQL
 }
 
-if [ -n "$POSTGRES_MULTIPLE_DATABASE" ]; then
-	echo "Multiple database creation requested: $POSTGRES_MULTIPLE_DATABASE"
-	for db in $(echo $POSTGRES_MULTIPLE_DATABASE | tr ',' ' '); do
+if [ -n "$POSTGRES_MULTIPLE_DATABASES" ]; then
+	echo "Multiple database creation requested: $POSTGRES_MULTIPLE_DATABASES"
+	for db in $(echo $POSTGRES_MULTIPLE_DATABASES | tr ',' ' '); do
 		create_user_and_database $db
 	done
 	echo "Multiple databases created"
