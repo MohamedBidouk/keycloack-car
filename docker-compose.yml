@@ -39,7 +39,7 @@ services:
       KEYCLOAK_HTTPS_PORT: 8443
       KC_DB: postgres
       KC_DB_SCHEMA: public
-      KC_DB_URL: jdbc:postgresql://pg-carBox:5432/keycloak
+      KC_DB_URL: jdbc:postgresql://pg-carBox:5432/keycloack
       KC_DB_USERNAME: carBox
       KC_DB_PASSWORD: carBox
       JDBC_PARAMS: "useSSL=false"
