@@ -28,10 +28,11 @@ services:
         - |
           cd /opt/keycloak
           ./bin/kc.sh build
-          ./bin/kc.sh start-dev --import-realm --log=console --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true 
+          ./bin/kc.sh start-dev --import-realm --log=console --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true
           ./bin/kcadm.sh config credentials --server http://137.74.160.180:8180 --realm master --user admin
           ./bin/kcadm.sh update realms/master -s sslRequired=NONE
 
+    #2 last commands are for dev only IMPORTANT
     #command: start
     environment:
       KEYCLOAK_ADMIN: admin
