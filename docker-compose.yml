@@ -28,7 +28,7 @@ services:
         - |
           cd /opt/keycloak
           ./bin/kc.sh build
-          ./bin/kc.sh start-dev --import-realm --log=console --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true
+          ./bin/kc.sh start-dev --import-realm --log=console --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true --spi-connections-http-client-default-disable-trust-manager=true
 
     #command: start
     environment:
