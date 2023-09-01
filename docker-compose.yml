@@ -17,9 +17,9 @@ services:
       #- type: volume
        # source: postgres_data
        # target: /var/lib/postgres
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
-      - ./docker/volumes/postgresql/:/var/lib/postgresql/data
+      #- /etc/timezone:/etc/timezone:ro
+      #- /etc/localtime:/etc/localtime:ro
+      #- ./docker/volumes/postgresql/:/var/lib/postgresql/data
     restart: unless-stopped
   keycloak-carBox:
     #haha
@@ -42,7 +42,7 @@ services:
     #2 last commands are for dev only IMPORTANT
     #command: start
     environment:
-      KEYCLOAK_REALM: cd,k
+      KEYCLOAK_REALM: keycloak
       KEYCLOAK_APIMAN_API_SECRET: 42r3pHmVjMNk83KYrF3
       KEYCLOAK_APIMAN_UI_SECRET: BVDrpduftBrFBJJaIF8
       KEYCLOAK_GATEWAY_SECRET: BEenlQzJTIkdZ0BioX0
