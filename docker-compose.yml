@@ -15,9 +15,9 @@ services:
       - type: bind
         source: "/common/create-multiple-postgresql-databases.sh"
         target: /docker-entrypoint-initdb.d/create-multiple-postgresql-databases.sh
-      - type: volume
-        source: postgres_data
-        target: /var/lib/postgres
+      #- type: volume
+       # source: postgres_data
+       # target: /var/lib/postgres
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
       - ./docker/volumes/postgresql/:/var/lib/postgresql/data
