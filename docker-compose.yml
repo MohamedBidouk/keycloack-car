@@ -13,7 +13,7 @@ services:
       - "5432:5432"
     volumes:
       - type: bind
-        source: "/common/create-multiple-postgresql-databases.sh"
+        source: "./common/create-multiple-postgresql-databases.sh"
         target: /docker-entrypoint-initdb.d/create-multiple-postgresql-databases.sh
       #- type: volume
        # source: postgres_data
