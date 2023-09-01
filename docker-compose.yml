@@ -54,6 +54,7 @@ services:
       #- ./keycloak/config/realm-export.json:/tmp/keycloak/config/realm-export.json
       #- ./keycloak/config/realm-export.json:/opt/keycloak/data/import/realm.json
     ports:
+      - 8180:8080
       - 8443:8443
     depends_on:
       - pg-carBox
