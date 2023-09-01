@@ -1,6 +1,6 @@
 {
   "id": "keycloak-apiman-realm",
-  "realm": "${KEYCLOAK_REALM}",
+  "realm": "apiman",
   "displayNameHtml": "<div class=\"kc-logo-text\"><span>Apiman Keycloak Quickstart</span></div>",
   "notBefore": 0,
   "revokeRefreshToken": false,
