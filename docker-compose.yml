@@ -5,7 +5,7 @@ services:
     container_name: pg-carBox
     image: postgres:14
     environment:
-      - POSTGRES_MULTIPLE_DATABASE=apiman.keycloak
+      - POSTGRES_MULTIPLE_DATABASE=apiman,keycloak
       - POSTGRES_USERNAME=postgres
       - POSTGRES_PASSWORD=admin123!
     ports:
