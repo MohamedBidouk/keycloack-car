@@ -10,6 +10,8 @@ services:
       - POSTGRES_PASSWORD=admin123!
     ports:
       - "5432:5432"
+    networks:
+      - my_nw1
     volumes:
       - type: bind
         source: "./common/create-multiple-postgresql-databases.sh"
@@ -36,6 +38,8 @@ services:
     hostname: keycloak-carbox
     container_name: keycloak-carbox
     restart: always
+    networks:
+      - my_nw1
     entrypoint: [ '/bin/bash', '-c']
     command:
       - |
@@ -90,6 +94,8 @@ services:
     container_name: pgadmin
     ports:
       - 8888:80
+    networks:
+      - my_nw1
     environment:
       PGADMIN_DEFAULT_EMAIL: carbox@carbox.com
       defaultEmail: carbox@carbox.com
@@ -103,15 +109,21 @@ services:
       - portainer_data:/data
     ports:
       - "9443:9443"
+    networks:
+      - my_nw1
   service-discovery:
     image: registry.gitlab.com/ajfleet/service-discovery:main
     ports:
       - "8761:8761"
+    networks:
+      - my_nw1
     restart: unless-stopped
   api-gateway:
     image: registry.gitlab.com/ajfleet/api-gateway:main
     ports:
       - "8090:8090"
+    networks:
+      - my_nw1
     restart: unless-stopped
     depends_on:
       - keycloak-carBox
@@ -122,7 +134,10 @@ volumes:
     driver: local
   postgres_logs:
     driver: local
-
+networks:
+  my_nw1:
+    driver: bridge
+    name: my_nw1
 
 
 
