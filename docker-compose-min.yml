@@ -108,6 +108,14 @@ services:
     ports:
       - "8761:8761"
     restart: unless-stopped
+  api-gateway:
+    image: registry.gitlab.com/ajfleet/api-gateway:main
+    ports:
+      - "8090:8090"
+    restart: unless-stopped
+    depends_on:
+      - keycloak-carBox
+      - service-discovery
 volumes:
   portainer_data: { }
   postgres_data:

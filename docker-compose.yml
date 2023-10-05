@@ -21,8 +21,8 @@ services:
         source: postgres_logs
         target: /var/log/postgres
       #- type: volume
-       # source: postgres_data
-       # target: /var/lib/postgres
+      # source: postgres_data
+      # target: /var/lib/postgres
       #- /etc/timezone:/etc/timezone:ro
       #- /etc/localtime:/etc/localtime:ro
       #- ./docker/volumes/postgresql/:/var/lib/postgresql/data
@@ -38,12 +38,12 @@ services:
     restart: always
     entrypoint: [ '/bin/bash', '-c']
     command:
-        - |
-          cd /opt/keycloak
-          ./bin/kc.sh build
-          ./bin/kc.sh start-dev --import-realm --log=console --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true
-          ./bin/kcadm.sh config credentials --server http://137.74.160.180:8180 --realm master --user admin
-          ./bin/kcadm.sh update realms/master -s sslRequired=NONE
+      - |
+        cd /opt/keycloak
+        ./bin/kc.sh build
+        ./bin/kc.sh start-dev --import-realm --log=console --spi-login-protocol-openid-connect-legacy-logout-redirect-uri=true
+        ./bin/kcadm.sh config credentials --server http://137.74.160.180:8180 --realm master --user admin
+        ./bin/kcadm.sh update realms/master -s sslRequired=NONE
 
     #2 last commands are for dev only IMPORTANT
     #command: start
@@ -108,6 +108,14 @@ services:
     ports:
       - "8761:8761"
     restart: unless-stopped
+  api-gateway:
+    image: registry.gitlab.com/ajfleet/api-gateway:main
+    ports:
+      - "8090:8090"
+    restart: unless-stopped
+    depends_on:
+      - keycloak-carBox
+      - service-discovery
 volumes:
   portainer_data: { }
   postgres_data:
