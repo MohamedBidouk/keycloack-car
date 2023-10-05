@@ -103,6 +103,11 @@ services:
       - portainer_data:/data
     ports:
       - "9443:9443"
+  service-discovery:
+    image: registry.gitlab.com/ajfleet/service-discovery/api-gateway:main
+    ports:
+      - "8761:8761"
+    restart: unless-stopped
 volumes:
   portainer_data: { }
   postgres_data:
