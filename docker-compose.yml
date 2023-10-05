@@ -104,7 +104,7 @@ services:
     ports:
       - "9443:9443"
   service-discovery:
-    image: registry.gitlab.com/ajfleet/service-discovery/api-gateway:main
+    image: registry.gitlab.com/ajfleet/service-discovery:main
     ports:
       - "8761:8761"
     restart: unless-stopped
