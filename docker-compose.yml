@@ -33,7 +33,7 @@ services:
     #haha
     #Be sure to use ‘docker-compose up --build -d’ to import realms.
     #docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:21.1.1 start-dev
-    image: quay.io/keycloak/keycloak:21.1.2
+    image: quay.io/keycloak/keycloak:22.0.1
     #image: keycloak
     hostname: keycloak-carbox
     container_name: keycloak-carbox
@@ -101,6 +101,8 @@ services:
       defaultEmail: carbox@carbox.com
       defaultPassword: carbox
       PGADMIN_DEFAULT_PASSWORD: carbox
+    depends_on:
+      - pg-carBox
   portainer:
     image: 'portainer/portainer-ce:latest'
     restart: always
@@ -118,6 +120,8 @@ services:
     networks:
       - my_nw1
     restart: unless-stopped
+    depends_on:
+      - keycloak-carBox
   api-gateway:
     image: registry.gitlab.com/ajfleet/api-gateway:main
     ports:
